@@ -146,3 +146,9 @@ MEDIA_ROOT =   os.path.join(BASE_DIR, 'media/')
 #MEDIA_URL ki jo bhi value hogi woh hume url bar mein dikeghi while accessing the images.
 #http://127.0.0.1:8000/mediafiles/images/test.jpg
 MEDIA_URL = '/mediafiles/'
+
+
+try:
+    from local_settings import *
+ except ImportError:
+     pass

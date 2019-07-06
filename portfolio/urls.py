@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 #we imort the core settings means settings of portfolio project
 from django.conf import settings
@@ -26,6 +26,12 @@ import jobs.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+#jobs.views.home are our home page thats why we cannot include by include(jobs.urls) because jab user website par pahunchega toh hum direst 
+#usko home.html dikhayenge and home .html jobs waala hoga.
+#but in blog jab user blog waale link par click karega tab hum request portfolio ke urls.py se blog ki urls.py ko send karenge 
+#and then blog/urls.py se html page kholnege (blog.views.functionname())so taht why we include the blog.urls
+
         path('', jobs.views.home, name="home"),
+        path('blog/',include('blog.urls'))
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
